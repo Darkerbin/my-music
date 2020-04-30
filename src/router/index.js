@@ -1,29 +1,45 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    component: () => import("../components/Home.vue"),
+    children: [
+      // 歌单
+      {
+        path: "/sheet",
+        component: () => import("../components/Gedan/Sheet.vue"),
+      },
+      // 排行榜
+      {
+        path: "/ranking",
+        component: () => import("../components/Ranking/Ranking.vue"),
+      },
+      //歌手
+      {
+        path: "/singer",
+        component: () => import("../components/Singer/Singer.vue"),
+      },
+      // 公共组件
+      { path: "/detail", component: () => import("../components/Common/Detail.vue") },
+    ],
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    path: "/footer",
+    component: () => import("../components/Footer.vue"),
+  },
+  { path: "/header", component: () => import("../components/Header.vue") },
+  // 歌单详情
+  { path: "/sheet/:id", component: () => import("../components/Gedan/sheetdetails.vue") },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
