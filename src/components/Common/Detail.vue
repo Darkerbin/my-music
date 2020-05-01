@@ -51,6 +51,7 @@
 
 <script>
 export default {
+  name: 'detail',
   data() {
     return {
       details: [],
@@ -81,7 +82,9 @@ export default {
         this.isloading = false;
       }
     },
-    onClickLeft() {}
+    onClickLeft() {
+      this.$router.go(-1);
+    }
   },
   created() {
     this.getdetails(this.$route.params.id);

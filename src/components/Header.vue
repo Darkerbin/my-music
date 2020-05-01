@@ -2,7 +2,7 @@
   <div class="myHeader">
     <div class="flex">
       <div class="icon">
-        <van-cell>
+        <van-cell @click="showPopup">
           <van-icon name="wap-nav" />
         </van-cell>
         <van-popup v-model="show" round position="left" :style="{ width: '70%',height:'100%'}">
@@ -30,7 +30,7 @@
       </van-row>
     </div>
     <div class="cover">
-      <keep-alive exclude="rankdetail, songdetail">
+      <keep-alive exclude="rankdetail, detail ">
         <router-view></router-view>
       </keep-alive>
     </div>
@@ -38,12 +38,22 @@
 </template>
 
 <script>
+import sidebar from "./Popup/Sidebar";
 export default {
+  name: "myHeader",
+  components: {
+    sidebar
+  },
   data() {
     return {
       active: 1,
       show: false
     };
+  },
+  methods: {
+    showPopup() {
+      this.show = true;
+    }
   }
 };
 </script>
@@ -57,6 +67,7 @@ export default {
   background: rgb(210, 69, 55);
   .icon .van-cell {
     background: rgb(210, 69, 55);
+    border: none;
   }
   .icon i {
     font-size: 2rem;

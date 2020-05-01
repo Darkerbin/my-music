@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from '../store/index'
 
+Vue.use(store)
 Vue.use(VueRouter);
 
 const routes = [
@@ -31,9 +33,16 @@ const routes = [
     path: "/footer",
     component: () => import("../components/Footer.vue"),
   },
+  // 弹出层
+  { path: "/sidebar", component: () => import("../components/Popup/Sidebar.vue") },
   { path: "/header", component: () => import("../components/Header.vue") },
   // 歌单详情
-  { path: "/sheet/:id", component: () => import("../components/Gedan/sheetdetails.vue") },
+  { path: "/sheet/:id", component: () => import("../components/Gedan/Sheetdetails.vue") },
+  // 排行榜详情
+  { path: "/ranking/:id", name:'rankingId' , component: () => import("../components/Ranking/Rankdetail.vue") },
+  // 登录
+  { path: "/login", component: () => import("../components/Login/Login.vue") },
+  { path: "/register", component: () => import("../components/Login/Register.vue") },
 ];
 
 const router = new VueRouter({
@@ -41,5 +50,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.path == "/login" || to.path == "/register" || to.path == "/error" || to.path == "/about" || to.path == "/search" || to.name == "searchdetail") {
+      store.state.showfooter = false
+      next();
+  } else {
+      store.state.showfooter = true
+      next();
+  }
+})
+
 
 export default router;

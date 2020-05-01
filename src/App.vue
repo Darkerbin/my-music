@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <audio class="audio" ref="audio"></audio>
-    <router-view v-if="isShow"></router-view>
+
+    <keep-alive exclude="detail">
+      <router-view v-if="isShow"></router-view>
+    </keep-alive>
+
     <my-footer v-if="showfooter" />
   </div>
 </template>
@@ -16,7 +20,7 @@ export default {
   data() {
     return {
       isShow: true,
-      showfooter: true
+      showfooter: this.$store.state.showfooter
     };
   }
 };
