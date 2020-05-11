@@ -85,6 +85,9 @@ const routes = [
       },
     ],
   },
+  // 搜索
+  { path: "/search", component: () => import("../components/Search/Search.vue") },
+  { path: "/search/:vaule", name: "searchdetail", component: () => import("../components/Search/Display.vue") },
   // 登录
   { path: "/login", component: () => import("../components/Login/Login.vue") },
   {

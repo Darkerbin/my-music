@@ -1,28 +1,28 @@
 # my-music
 
-## Project setup
+## 这是一个仿网易云功能的手机端项目,部分ui用了Vant框架
+
+## 启动项目
+
+### 切入 `src` 目录下的`wyyunapi,开启接口
+```
+npm install 
+node app.js   
+```
+
+### `src`目录下安装项目依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动项目
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译项目
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration
