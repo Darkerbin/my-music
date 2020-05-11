@@ -23,7 +23,9 @@ Vue.use(Vuelazyload, {
   loading: require("./assets/loading.gif")
 });
 
-
+//  引入动画库
+import animated from 'animate.css'
+Vue.use(animated)
 
 
 Vue.config.productionTip = false

@@ -2,9 +2,9 @@
   <div id="app">
     <audio class="audio" ref="audio"></audio>
 
-    <keep-alive exclude="detail">
+    <!-- <keep-alive exclude="detail"> -->
       <router-view v-if="isShow"></router-view>
-    </keep-alive>
+    <!-- </keep-alive> -->
 
     <my-footer v-if="showfooter" />
   </div>
@@ -22,6 +22,9 @@ export default {
       isShow: true,
       showfooter: this.$store.state.showfooter
     };
+  },
+  updated() {
+    this.showfooter = this.$store.state.showfooter;
   }
 };
 </script>

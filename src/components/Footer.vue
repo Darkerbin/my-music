@@ -9,19 +9,34 @@
         <i class="iconfont" id="playicon">&#xe612;</i>
       </div>
       <div class="liebiao">
-        <i class="iconfont">&#xe609;</i>
-        <!-- <van-popup v-model="show" round position="bottom" :style="{ height: '50%' }">
+        <i class="iconfont" @click="showPopup">&#xe609;</i>
+        <van-popup v-model="show" round position="bottom" :style="{ height: '50%' }">
           <playhistory v-if="isshow" />
-        </van-popup>-->
+        </van-popup>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import playhistory from "./Popup/Playhistory";
 export default {
+  name: "myFooter",
+  components: {
+    playhistory
+  },
   data() {
-    return {};
+    return {
+      show: false,
+      // 列表组件
+      isshow: true
+    };
+  },
+  methods: {
+    // 弹出层
+    showPopup() {
+      this.show = true;
+    },
   }
 };
 </script>
