@@ -10,7 +10,7 @@ npm install
 node app.js   
 ```
 
-### `src`目录下安装项目依赖
+### 根目录下安装项目依赖
 ```
 npm install
 ```

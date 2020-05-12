@@ -61,6 +61,7 @@ export default {
     };
   },
   props: ["title"],
+  inject: ["iffooter", "playaudio"],
   filters: {
     counts(value) {
       return Math.floor(value / 10000);
@@ -73,6 +74,20 @@ export default {
         this.details = res.data.playlist;
         this.song = res.data.playlist.tracks;
       });
+    },
+    // 音乐url
+    getsongurl(id) {
+      this.$axios.get("/song/url?id=" + id).then(res => {
+        console.log(res)
+        this.$store.state.src = res.data.data[0].url;
+      });
+    },
+    // 点击音乐
+    play(id,song) {
+      // 获取音乐url
+      this.getsongurl(id);
+      // 播放音乐
+      this.playaudio(id,song);
     },
     onload() {
       if (this.details == "") {
